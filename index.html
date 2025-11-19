@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+  <title>मराठी आमंत्रण कार्ड निर्माता</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="index.css" />
+  <link href="https://fonts.googleapis.com/css?family=Poppins:700|Mukta:700|Baloo:700|Noto+Sans:700&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <header>
+    <h1>प्रोफेशनल मराठी आमंत्रण कार्ड निर्माता</h1>
+    <p> तुमचे नाव, कार्यक्रम, तारीख, वेळ, स्थळ, आयोजक, रंग व फॉन्ट निवडा </p>
+  </header>
+  <main>
+    <section class="controls">
+      <form id="cardForm">
+        <label>कार्ड प्रकार:
+          <select id="cardType"></select>
+        </label>
+        <label>तुमचे नाव: <input type="text" id="name" /></label>
+        <label>आमंत्रण शीर्षक: <input type="text" id="heading" /></label>
+        <label>तारीख: <input type="date" id="date" /></label>
+        <label>वेळ: <input type="text" id="time" placeholder="eg. सकाळी १०:३०" /></label>
+        <label>स्थळ: <input type="text" id="venue" /></label>
+        <label>आयोजक/निमंत्रक: <input type="text" id="invitor" /></label>
+        <label>प्रमुख संयोजक: <input type="text" id="coordinator" /></label>
+        <br />
+        <label>रंग निवडा: <input type="color" id="color" /></label>
+        <label>सीमा निवडा: 
+          <select id="border">
+            <option value="floral">पारंपारिक फुलांची सीमा</option>
+            <option value="gold">सोनेरी सीमा</option>
+            <option value="simple">साधी सीमा</option>
+          </select>
+        </label>
+        <label>फॉन्ट:
+          <select id="font">
+            <option value="Mukta">Mukta</option>
+            <option value="Baloo">Baloo</option>
+            <option value="Noto Sans">Noto Sans</option>
+            <option value="Poppins">Poppins</option>
+          </select>
+        </label>
+        <br />
+        <button type="button" id="previewBtn">Live Preview</button>
+      </form>
+    </section>
+    <section class="preview">
+      <div id="cardPreview"></div>
+      <button id="downloadBtn">Download Card</button>
+    </section>
+  </main>
+  <footer>
+    <p>Made with ❤️ for all traditional Marathi occasions | Dev: Ganesh Sultane</p>
+  </footer>
+  <script src="index.js"></script>
+</body>
+</html>
