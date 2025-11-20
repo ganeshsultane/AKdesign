@@ -457,6 +457,94 @@ body {
     font-weight: bold;
 }
 
+.marathi-festival {
+    background: linear-gradient(135deg, #ff9933 0%, #ff6600 100%);
+    color: white;
+    font-family: 'Noto Sans Devanagari', Arial, sans-serif;
+    border: 3px solid #cc5500;
+}
+
+.festival-icon {
+    font-size: 24px;
+    margin-bottom: 8px;
+}
+
+.festival-text {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 4px;
+}
+
+.festival-sub {
+    font-size: 11px;
+}
+
+.marathi-business-card {
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    color: white;
+    font-family: 'Noto Sans Devanagari', Arial, sans-serif;
+}
+
+.business-icon {
+    font-size: 20px;
+    margin-bottom: 6px;
+}
+
+.business-name {
+    font-size: 14px;
+    font-weight: bold;
+    color: #ffd700;
+    margin-bottom: 4px;
+}
+
+.business-person {
+    font-size: 12px;
+}
+
+.marathi-house {
+    background: linear-gradient(135deg, #8e44ad 0%, #3498db 100%);
+    color: white;
+    font-family: 'Noto Sans Devanagari', Arial, sans-serif;
+    border: 2px solid #2c3e50;
+}
+
+.house-icon {
+    font-size: 22px;
+    margin-bottom: 6px;
+}
+
+.house-text {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 4px;
+}
+
+.house-sub {
+    font-size: 10px;
+}
+
+.marathi-social-post {
+    background: linear-gradient(135deg, #e74c3c 0%, #f39c12 100%);
+    color: white;
+    font-family: 'Noto Sans Devanagari', Arial, sans-serif;
+}
+
+.social-emoji {
+    font-size: 20px;
+    margin-bottom: 6px;
+}
+
+.social-text {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 4px;
+}
+
+.social-hashtag {
+    font-size: 10px;
+    color: #fff3cd;
+}
+
 .template-info {
     padding: 20px;
 }
@@ -701,5 +789,29 @@ body {
     
     .marathi-birthday-text {
         font-size: 12px;
+    }
+    
+    .festival-text, .house-text {
+        font-size: 14px;
+    }
+    
+    .festival-sub, .house-sub {
+        font-size: 9px;
+    }
+    
+    .business-name {
+        font-size: 12px;
+    }
+    
+    .business-person {
+        font-size: 10px;
+    }
+    
+    .social-text {
+        font-size: 12px;
+    }
+    
+    .social-hashtag {
+        font-size: 9px;
     }
 }

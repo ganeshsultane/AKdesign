@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AK Design - Advanced Editor</title>
+    <link rel="stylesheet" href="advanced-editor.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/fabric@5.3.0/dist/fabric.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+</head>
+<body>
+    <div class="editor-layout">
+        <!-- Header -->
+        <header class="editor-header">
+            <div class="header-left">
+                <a href="index.html" class="logo">
+                    <i class="fas fa-palette"></i>
+                    <span>AK Design</span>
+                </a>
+                <input type="text" value="Untitled Design" class="project-name" id="projectName">
+            </div>
+            <div class="header-center">
+                <div class="toolbar">
+                    <button class="tool-btn" onclick="undo()"><i class="fas fa-undo"></i></button>
+                    <button class="tool-btn" onclick="redo()"><i class="fas fa-redo"></i></button>
+                    <div class="zoom-controls">
+                        <button onclick="zoomOut()"><i class="fas fa-minus"></i></button>
+                        <span id="zoomLevel">100%</span>
+                        <button onclick="zoomIn()"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="header-right">
+                <button class="btn btn-secondary" onclick="shareDesign()"><i class="fas fa-share"></i> Share</button>
+                <button class="btn btn-primary" onclick="downloadDesign()"><i class="fas fa-download"></i> Download</button>
+            </div>
+        </header>
+
+        <div class="editor-main">
+            <!-- Left Sidebar -->
+            <aside class="sidebar left-sidebar">
+                <div class="sidebar-tabs">
+                    <button class="tab-btn active" data-tab="templates"><i class="fas fa-th-large"></i><span>Templates</span></button>
+                    <button class="tab-btn" data-tab="elements"><i class="fas fa-shapes"></i><span>Elements</span></button>
+                    <button class="tab-btn" data-tab="text"><i class="fas fa-font"></i><span>Text</span></button>
+                    <button class="tab-btn" data-tab="uploads"><i class="fas fa-upload"></i><span>Uploads</span></button>
+                    <button class="tab-btn" data-tab="photos"><i class="fas fa-image"></i><span>Photos</span></button>
+                    <button class="tab-btn" data-tab="background"><i class="fas fa-fill-drip"></i><span>Background</span></button>
+                </div>
+
+                <div class="tab-content active" id="templates">
+                    <div class="content-header">
+                        <h3>Templates</h3>
+                        <input type="text" placeholder="Search templates..." class="search-input">
+                    </div>
+                    <div class="template-categories">
+                        <button class="category-btn active" data-category="all">All</button>
+                        <button class="category-btn" data-category="social">Social Media</button>
+                        <button class="category-btn" data-category="business">Business</button>
+                        <button class="category-btn" data-category="events">Events</button>
+                    </div>
+                    <div class="template-grid" id="templateGrid"></div>
+                </div>
+
+                <div class="tab-content" id="elements">
+                    <div class="content-header">
+                        <h3>Elements</h3>
+                    </div>
+                    <div class="element-categories">
+                        <div class="element-category">
+                            <h4>Shapes</h4>
+                            <div class="shape-grid">
+                                <div class="shape-item" onclick="addShape('rectangle')">⬜</div>
+                                <div class="shape-item" onclick="addShape('circle')">⭕</div>
+                                <div class="shape-item" onclick="addShape('triangle')">🔺</div>
+                                <div class="shape-item" onclick="addShape('star')">⭐</div>
+                            </div>
+                        </div>
+                        <div class="element-category">
+                            <h4>Lines</h4>
+                            <div class="line-grid">
+                                <div class="line-item" onclick="addLine('straight')">━</div>
+                                <div class="line-item" onclick="addLine('curved')">〰️</div>
+                                <div class="line-item" onclick="addLine('arrow')">➡️</div>
+                            </div>
+                        </div>
+                        <div class="element-category">
+                            <h4>Icons</h4>
+                            <div class="icon-grid">
+                                <div class="icon-item" onclick="addIcon('heart')">❤️</div>
+                                <div class="icon-item" onclick="addIcon('star')">⭐</div>
+                                <div class="icon-item" onclick="addIcon('check')">✅</div>
+                                <div class="icon-item" onclick="addIcon('arrow')">➡️</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="text">
+                    <div class="content-header">
+                        <h3>Text</h3>
+                    </div>
+                    <div class="text-options">
+                        <button class="text-style-btn" onclick="addText('heading')">
+                            <div class="text-preview heading-preview">Add a heading</div>
+                        </button>
+                        <button class="text-style-btn" onclick="addText('subheading')">
+                            <div class="text-preview subheading-preview">Add a subheading</div>
+                        </button>
+                        <button class="text-style-btn" onclick="addText('body')">
+                            <div class="text-preview body-preview">Add a little bit of body text</div>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="uploads">
+                    <div class="content-header">
+                        <h3>Uploads</h3>
+                    </div>
+                    <div class="upload-area" onclick="document.getElementById('fileInput').click()">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <p>Click to upload or drag and drop</p>
+                        <p class="upload-formats">SVG, PNG, JPG or GIF (max. 800x400px)</p>
+                    </div>
+                    <input type="file" id="fileInput" accept="image/*" multiple style="display: none;" onchange="handleFileUpload(event)">
+                    <div class="uploaded-images" id="uploadedImages"></div>
+                </div>
+
+                <div class="tab-content" id="photos">
+                    <div class="content-header">
+                        <h3>Photos</h3>
+                        <input type="text" placeholder="Search photos..." class="search-input">
+                    </div>
+                    <div class="photo-grid" id="photoGrid"></div>
+                </div>
+
+                <div class="tab-content" id="background">
+                    <div class="content-header">
+                        <h3>Background</h3>
+                    </div>
+                    <div class="background-options">
+                        <div class="bg-section">
+                            <h4>Colors</h4>
+                            <div class="color-grid">
+                                <div class="color-item" style="background: #ffffff" onclick="setBackground('#ffffff')"></div>
+                                <div class="color-item" style="background: #000000" onclick="setBackground('#000000')"></div>
+                                <div class="color-item" style="background: #ff6b6b" onclick="setBackground('#ff6b6b')"></div>
+                                <div class="color-item" style="background: #4ecdc4" onclick="setBackground('#4ecdc4')"></div>
+                                <div class="color-item" style="background: #45b7d1" onclick="setBackground('#45b7d1')"></div>
+                                <div class="color-item" style="background: #96ceb4" onclick="setBackground('#96ceb4')"></div>
+                                <div class="color-item" style="background: #ffeaa7" onclick="setBackground('#ffeaa7')"></div>
+                                <div class="color-item" style="background: #dda0dd" onclick="setBackground('#dda0dd')"></div>
+                            </div>
+                        </div>
+                        <div class="bg-section">
+                            <h4>Gradients</h4>
+                            <div class="gradient-grid">
+                                <div class="gradient-item" style="background: linear-gradient(45deg, #ff6b6b, #ffa500)" onclick="setGradientBackground('linear-gradient(45deg, #ff6b6b, #ffa500)')"></div>
+                                <div class="gradient-item" style="background: linear-gradient(45deg, #4ecdc4, #44a08d)" onclick="setGradientBackground('linear-gradient(45deg, #4ecdc4, #44a08d)')"></div>
+                                <div class="gradient-item" style="background: linear-gradient(45deg, #667eea, #764ba2)" onclick="setGradientBackground('linear-gradient(45deg, #667eea, #764ba2)')"></div>
+                                <div class="gradient-item" style="background: linear-gradient(45deg, #f093fb, #f5576c)" onclick="setGradientBackground('linear-gradient(45deg, #f093fb, #f5576c)')"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Canvas Area -->
+            <main class="canvas-area">
+                <div class="canvas-container">
+                    <canvas id="designCanvas" width="800" height="600"></canvas>
+                </div>
+            </main>
+
+            <!-- Right Sidebar -->
+            <aside class="sidebar right-sidebar" id="propertiesPanel">
+                <div class="properties-header">
+                    <h3>Properties</h3>
+                </div>
+                <div class="properties-content" id="propertiesContent">
+                    <div class="no-selection">
+                        <p>Select an object to edit its properties</p>
+                    </div>
+                </div>
+            </aside>
+        </div>
+
+        <!-- Layers Panel -->
+        <div class="layers-panel" id="layersPanel">
+            <div class="layers-header">
+                <h4>Layers</h4>
+                <button class="close-layers" onclick="toggleLayers()"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="layers-list" id="layersList"></div>
+        </div>
+    </div>
+
+    <script src="advanced-editor.js"></script>
+</body>
+</html>
