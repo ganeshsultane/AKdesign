@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AK Design Editor - Create Professional Designs</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="editor.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+</head>
+<body>
+    <div class="editor-layout">
+        <header class="editor-header">
+            <div class="header-left">
+                <a href="index.html" class="logo">
+                    <i class="fas fa-palette"></i>
+                    <span>AK Design</span>
+                </a>
+                <div class="project-name">
+                    <input type="text" value="Untitled Design" class="project-input">
+                </div>
+            </div>
+            <div class="header-center">
+                <div class="zoom-controls">
+                    <button class="zoom-btn" onclick="zoomOut()"><i class="fas fa-minus"></i></button>
+                    <span class="zoom-level">100%</span>
+                    <button class="zoom-btn" onclick="zoomIn()"><i class="fas fa-plus"></i></button>
+                </div>
+            </div>
+            <div class="header-right">
+                <button class="btn btn-secondary"><i class="fas fa-share"></i> Share</button>
+                <button class="btn btn-primary" onclick="downloadDesign()"><i class="fas fa-download"></i> Download</button>
+            </div>
+        </header>
+
+        <div class="editor-main">
+            <aside class="sidebar">
+                <div class="sidebar-tabs">
+                    <button class="tab-btn active" data-tab="templates"><i class="fas fa-th-large"></i> Templates</button>
+                    <button class="tab-btn" data-tab="elements"><i class="fas fa-shapes"></i> Elements</button>
+                    <button class="tab-btn" data-tab="text"><i class="fas fa-font"></i> Text</button>
+                    <button class="tab-btn" data-tab="uploads"><i class="fas fa-upload"></i> Uploads</button>
+                </div>
+                
+                <div class="tab-content active" id="templates">
+                    <div class="content-header">
+                        <h3>Templates</h3>
+                        <input type="text" placeholder="Search templates..." class="search-input">
+                    </div>
+                    <div class="template-list">
+                        <div class="template-item" onclick="loadTemplate('wedding')">
+                            <div class="template-thumb wedding-thumb">Wedding Invitation</div>
+                            <span>Wedding Invitation</span>
+                        </div>
+                        <div class="template-item" onclick="loadTemplate('business')">
+                            <div class="template-thumb business-thumb">Business Card</div>
+                            <span>Business Card</span>
+                        </div>
+                        <div class="template-item" onclick="loadTemplate('social')">
+                            <div class="template-thumb social-thumb">Social Post</div>
+                            <span>Social Media</span>
+                        </div>
+                        <div class="template-item" onclick="loadTemplate('marathi-wedding')">
+                            <div class="template-thumb marathi-wedding-thumb">लग्न निमंत्रण</div>
+                            <span>Marathi Wedding</span>
+                        </div>
+                        <div class="template-item" onclick="loadTemplate('marathi-birthday')">
+                            <div class="template-thumb marathi-birthday-thumb">वाढदिवस शुभेच्छा</div>
+                            <span>Marathi Birthday</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tab-content" id="elements">
+                    <div class="content-header">
+                        <h3>Elements</h3>
+                    </div>
+                    <div class="element-grid">
+                        <div class="element-item" onclick="addElement('shape')">
+                            <i class="fas fa-square"></i>
+                            <span>Shapes</span>
+                        </div>
+                        <div class="element-item" onclick="addElement('line')">
+                            <i class="fas fa-minus"></i>
+                            <span>Lines</span>
+                        </div>
+                        <div class="element-item" onclick="addElement('icon')">
+                            <i class="fas fa-star"></i>
+                            <span>Icons</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tab-content" id="text">
+                    <div class="content-header">
+                        <h3>Text</h3>
+                    </div>
+                    <div class="text-options">
+                        <button class="text-btn" onclick="addText('heading')">Add Heading</button>
+                        <button class="text-btn" onclick="addText('subheading')">Add Subheading</button>
+                        <button class="text-btn" onclick="addText('body')">Add Body Text</button>
+                    </div>
+                </div>
+                
+                <div class="tab-content" id="uploads">
+                    <div class="content-header">
+                        <h3>Uploads</h3>
+                    </div>
+                    <div class="upload-area">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <p>Drag and drop images here</p>
+                        <button class="btn btn-primary">Browse Files</button>
+                    </div>
+                </div>
+            </aside>
+
+            <main class="canvas-area">
+                <div class="canvas-container">
+                    <div class="canvas" id="designCanvas">
+                        <div class="canvas-content">
+                            <h2 class="editable-text" contenteditable="true">Your Design Title</h2>
+                            <p class="editable-text" contenteditable="true">Click to edit this text</p>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+            <aside class="properties-panel">
+                <div class="panel-header">
+                    <h3>Properties</h3>
+                </div>
+                <div class="property-group">
+                    <label>Background Color</label>
+                    <input type="color" value="#ffffff" onchange="changeBackground(this.value)">
+                </div>
+                <div class="property-group">
+                    <label>Text Color</label>
+                    <input type="color" value="#000000" onchange="changeTextColor(this.value)">
+                </div>
+                <div class="property-group">
+                    <label>Font Size</label>
+                    <input type="range" min="12" max="72" value="24" onchange="changeFontSize(this.value)">
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <script>
+        // Sidebar tab functionality
+        document.querySelectorAll('.sidebar .tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.sidebar .tab-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.sidebar .tab-content').forEach(c => c.classList.remove('active'));
+                
+                btn.classList.add('active');
+                document.getElementById(btn.dataset.tab).classList.add('active');
+            });
+        });
+
+        // Editor functions
+        function loadTemplate(type) {
+            const canvas = document.getElementById('designCanvas');
+            const templates = {
+                wedding: '<div class="template-content wedding-template"><h1>You\'re Invited</h1><h2>Sarah & John</h2><p>June 15, 2024</p></div>',
+                business: '<div class="template-content business-template"><h2>John Doe</h2><p>Creative Director</p><p>john@company.com</p></div>',
+                social: '<div class="template-content social-template"><h1>📸 Follow Us</h1><p>Amazing Content</p><p>#design #creative</p></div>',
+                'marathi-wedding': '<div class="template-content marathi-wedding-template"><h1>लग्न निमंत्रण</h1><p>प्रिय मित्र,</p><p>विवाह सोहळ्यास आमंत्रण</p></div>',
+                'marathi-birthday': '<div class="template-content marathi-birthday-template"><h1>🎂 वाढदिवसाच्या शुभेच्छा! 🎉</h1><p>आनंदाने भरलेले वर्ष असो!</p></div>'
+            };
+            canvas.innerHTML = templates[type] || canvas.innerHTML;
+        }
+
+        function addElement(type) {
+            const canvas = document.getElementById('designCanvas');
+            const elements = {
+                shape: '<div class="design-element shape" style="width:100px;height:100px;background:#8b5cf6;margin:10px;"></div>',
+                line: '<div class="design-element line" style="width:200px;height:2px;background:#000;margin:10px;"></div>',
+                icon: '<div class="design-element icon" style="font-size:48px;margin:10px;">⭐</div>'
+            };
+            canvas.innerHTML += elements[type] || '';
+        }
+
+        function addText(type) {
+            const canvas = document.getElementById('designCanvas');
+            const texts = {
+                heading: '<h1 class="editable-text" contenteditable="true">New Heading</h1>',
+                subheading: '<h2 class="editable-text" contenteditable="true">New Subheading</h2>',
+                body: '<p class="editable-text" contenteditable="true">New body text</p>'
+            };
+            canvas.innerHTML += texts[type] || '';
+        }
+
+        function changeBackground(color) {
+            document.getElementById('designCanvas').style.backgroundColor = color;
+        }
+
+        function changeTextColor(color) {
+            document.querySelectorAll('.editable-text').forEach(el => {
+                el.style.color = color;
+            });
+        }
+
+        function changeFontSize(size) {
+            document.querySelectorAll('.editable-text').forEach(el => {
+                el.style.fontSize = size + 'px';
+            });
+        }
+
+        let zoomLevel = 100;
+        function zoomIn() {
+            zoomLevel = Math.min(200, zoomLevel + 10);
+            updateZoom();
+        }
+
+        function zoomOut() {
+            zoomLevel = Math.max(50, zoomLevel - 10);
+            updateZoom();
+        }
+
+        function updateZoom() {
+            document.querySelector('.zoom-level').textContent = zoomLevel + '%';
+            document.getElementById('designCanvas').style.transform = `scale(${zoomLevel / 100})`;
+        }
+
+        function downloadDesign() {
+            html2canvas(document.getElementById('designCanvas')).then(canvas => {
+                const link = document.createElement('a');
+                link.download = 'ak-design.png';
+                link.href = canvas.toDataURL();
+                link.click();
+            });
+        }
+    </script>
+</body>
+</html>

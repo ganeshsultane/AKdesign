@@ -1,59 +1,362 @@
 <!DOCTYPE html>
-<html lang="mr">
+<html lang="en">
 <head>
-  <title>मराठी आमंत्रण कार्ड निर्माता</title>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="index.css" />
-  <link href="https://fonts.googleapis.com/css?family=Poppins:700|Mukta:700|Baloo:700|Noto+Sans:700&display=swap" rel="stylesheet" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AK Design - Professional Templates Made Simple</title>
+    <link rel="stylesheet" href="index.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
-  <header>
-    <h1>प्रोफेशनल मराठी आमंत्रण कार्ड निर्माता</h1>
-    <p> तुमचे नाव, कार्यक्रम, तारीख, वेळ, स्थळ, आयोजक, रंग व फॉन्ट निवडा </p>
-  </header>
-  <main>
-    <section class="controls">
-      <form id="cardForm">
-        <label>कार्ड प्रकार:
-          <select id="cardType"></select>
-        </label>
-        <label>तुमचे नाव: <input type="text" id="name" /></label>
-        <label>आमंत्रण शीर्षक: <input type="text" id="heading" /></label>
-        <label>तारीख: <input type="date" id="date" /></label>
-        <label>वेळ: <input type="text" id="time" placeholder="eg. सकाळी १०:३०" /></label>
-        <label>स्थळ: <input type="text" id="venue" /></label>
-        <label>आयोजक/निमंत्रक: <input type="text" id="invitor" /></label>
-        <label>प्रमुख संयोजक: <input type="text" id="coordinator" /></label>
-        <br />
-        <label>रंग निवडा: <input type="color" id="color" /></label>
-        <label>सीमा निवडा: 
-          <select id="border">
-            <option value="floral">पारंपारिक फुलांची सीमा</option>
-            <option value="gold">सोनेरी सीमा</option>
-            <option value="simple">साधी सीमा</option>
-          </select>
-        </label>
-        <label>फॉन्ट:
-          <select id="font">
-            <option value="Mukta">Mukta</option>
-            <option value="Baloo">Baloo</option>
-            <option value="Noto Sans">Noto Sans</option>
-            <option value="Poppins">Poppins</option>
-          </select>
-        </label>
-        <br />
-        <button type="button" id="previewBtn">Live Preview</button>
-      </form>
-    </section>
-    <section class="preview">
-      <div id="cardPreview"></div>
-      <button id="downloadBtn">Download Card</button>
-    </section>
-  </main>
-  <footer>
-    <p>Made with ❤️ for all traditional Marathi occasions | Dev: Ganesh Sultane</p>
-  </footer>
-  <script src="index.js"></script>
+    <div class="container">
+        <header class="main-header">
+            <div class="logo">
+                <i class="fas fa-palette"></i>
+                <h1>AK Design</h1>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#templates">Templates</a></li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#pricing">Pricing</a></li>
+                    <li><a href="#about">About</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <a href="#" class="btn btn-secondary">Log in</a>
+                <a href="editor.html" class="btn btn-primary">Create Design</a>
+            </div>
+        </header>
+
+        <main>
+            <section class="hero-section">
+                <div class="hero-content">
+                    <h2>Design anything. Publish everywhere.</h2>
+                    <p>Create stunning professional designs with our intuitive drag-and-drop editor. From social media posts to business presentations, we've got you covered.</p>
+                    <div class="hero-buttons">
+                        <a href="editor.html" class="btn btn-primary btn-large">Start Designing</a>
+                        <a href="#templates" class="btn btn-outline btn-large">Browse Templates</a>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="floating-cards">
+                        <div class="card card-1">📱 Social Media</div>
+                        <div class="card card-2">💼 Business</div>
+                        <div class="card card-3">🎉 Events</div>
+                        <div class="card card-4">📊 Presentations</div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="search-section">
+                <div class="search-container">
+                    <div class="search-bar">
+                        <i class="fas fa-search search-icon"></i>
+                        <input type="text" placeholder="Search thousands of templates...">
+                    </div>
+                    <div class="category-pills">
+                        <div class="pill active">All</div>
+                        <div class="pill">Invitations</div>
+                        <div class="pill">Business Cards</div>
+                        <div class="pill">Social Media</div>
+                        <div class="pill">Presentations</div>
+                        <div class="pill">Posters</div>
+                        <div class="pill">Logos</div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="templates-section" id="templates">
+                <div class="section-header">
+                    <h3>Featured Templates</h3>
+                    <div class="template-filters">
+                        <button class="filter-btn active" data-filter="all">All</button>
+                        <button class="filter-btn" data-filter="business">Business</button>
+                        <button class="filter-btn" data-filter="social">Social Media</button>
+                        <button class="filter-btn" data-filter="events">Events</button>
+                    </div>
+                </div>
+                <div class="template-grid">
+                    <div class="template-card" data-category="events">
+                        <div class="template-image">
+                            <div class="template-preview wedding-invite">
+                                <div class="invite-header">You're Invited</div>
+                                <div class="invite-names">Sarah & John</div>
+                                <div class="invite-date">June 15, 2024</div>
+                            </div>
+                        </div>
+                        <div class="template-info">
+                            <h4>Wedding Invitation</h4>
+                            <span class="template-category">Events</span>
+                        </div>
+                    </div>
+                    <div class="template-card" data-category="business">
+                        <div class="template-image">
+                            <div class="template-preview business-card">
+                                <div class="card-name">John Doe</div>
+                                <div class="card-title">Creative Director</div>
+                                <div class="card-contact">john@company.com</div>
+                            </div>
+                        </div>
+                        <div class="template-info">
+                            <h4>Business Card</h4>
+                            <span class="template-category">Business</span>
+                        </div>
+                    </div>
+                    <div class="template-card" data-category="social">
+                        <div class="template-image">
+                            <div class="template-preview instagram-post">
+                                <div class="post-header">📸 Follow Us</div>
+                                <div class="post-content">Amazing Content</div>
+                                <div class="post-hashtags">#design #creative</div>
+                            </div>
+                        </div>
+                        <div class="template-info">
+                            <h4>Instagram Post</h4>
+                            <span class="template-category">Social Media</span>
+                        </div>
+                    </div>
+                    <div class="template-card" data-category="business">
+                        <div class="template-image">
+                            <div class="template-preview presentation">
+                                <div class="slide-title">Business Plan</div>
+                                <div class="slide-content">
+                                    <div class="chart"></div>
+                                    <div class="bullet-points">
+                                        <div class="bullet">• Market Analysis</div>
+                                        <div class="bullet">• Revenue Model</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="template-info">
+                            <h4>Business Presentation</h4>
+                            <span class="template-category">Business</span>
+                        </div>
+                    </div>
+                    <div class="template-card" data-category="events">
+                        <div class="template-image">
+                            <div class="template-preview birthday-card">
+                                <div class="birthday-text">🎉 Happy Birthday! 🎂</div>
+                                <div class="birthday-name">Alex</div>
+                            </div>
+                        </div>
+                        <div class="template-info">
+                            <h4>Birthday Card</h4>
+                            <span class="template-category">Events</span>
+                        </div>
+                    </div>
+                    <div class="template-card" data-category="business">
+                        <div class="template-image">
+                            <div class="template-preview logo">
+                                <div class="logo-icon">🚀</div>
+                                <div class="logo-text">StartUp</div>
+                            </div>
+                        </div>
+                        <div class="template-info">
+                            <h4>Company Logo</h4>
+                            <span class="template-category">Business</span>
+                        </div>
+                    </div>
+                    <div class="template-card" data-category="events" onclick="openTemplate('marathi-wedding')">
+                        <div class="template-image">
+                            <div class="template-preview marathi-wedding">
+                                <div class="marathi-heading">लग्न निमंत्रण</div>
+                                <div class="marathi-text">प्रिय मित्र,</div>
+                                <div class="marathi-invite">विवाह सोहळ्यास आमंत्रण</div>
+                            </div>
+                        </div>
+                        <div class="template-info">
+                            <h4>Marathi Wedding Card</h4>
+                            <span class="template-category">Events</span>
+                        </div>
+                    </div>
+                    <div class="template-card" data-category="events" onclick="openTemplate('marathi-birthday')">
+                        <div class="template-image">
+                            <div class="template-preview marathi-birthday">
+                                <div class="birthday-emoji">🎂🎉</div>
+                                <div class="marathi-birthday-text">वाढदिवसाच्या शुभेच्छा!</div>
+                            </div>
+                        </div>
+                        <div class="template-info">
+                            <h4>Marathi Birthday Card</h4>
+                            <span class="template-category">Events</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="features-section" id="features">
+                <div class="section-header">
+                    <h3>Everything you need to create amazing designs</h3>
+                    <p>Professional tools made simple for everyone</p>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-magic"></i>
+                        </div>
+                        <h4>Drag & Drop Editor</h4>
+                        <p>Intuitive design tools that anyone can master in minutes.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-images"></i>
+                        </div>
+                        <h4>Premium Assets</h4>
+                        <p>Access millions of photos, graphics, and fonts.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h4>Team Collaboration</h4>
+                        <p>Work together in real-time with your team.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-download"></i>
+                        </div>
+                        <h4>Export Anywhere</h4>
+                        <p>Download in any format or share directly online.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="for-section">
+                <div class="tabs">
+                    <button class="tab-btn active" data-tab="individuals">Individuals</button>
+                    <button class="tab-btn" data-tab="teams">Teams</button>
+                    <button class="tab-btn" data-tab="education">Education</button>
+                </div>
+                <div class="tab-content active" id="individuals">
+                    <h3>For Individuals</h3>
+                    <p>Create and share stunning designs with our easy-to-use editor.</p>
+                    <a href="#" class="btn btn-primary">Get Started</a>
+                </div>
+                <div class="tab-content" id="teams">
+                    <h3>For Teams</h3>
+                    <p>Collaborate with your team and manage your brand with our powerful tools.</p>
+                    <a href="#" class="btn btn-primary">Learn More</a>
+                </div>
+                <div class="tab-content" id="education">
+                    <h3>For Education</h3>
+                    <p>Bring your classroom to life with engaging and interactive learning materials.</p>
+                    <a href="#" class="btn btn-primary">Explore Education</a>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h4>Features</h4>
+                    <ul>
+                        <li><a href="#">Templates</a></li>
+                        <li><a href="#">Editor</a></li>
+                        <li><a href="#">Download</a></li>
+                        <li><a href="#">Photos</a></li>
+                        <li><a href="#">Videos</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Inspiration</a></li>
+                        <li><a href="#">Support</a></li>
+                        <li><a href="#">Tutorials</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Press</a></li>
+                        <li><a href="#">Terms & Privacy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Social</h4>
+                    <ul>
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">Twitter</a></li>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">Pinterest</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+...
+<script>
+    // Template filtering
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const templateCards = document.querySelectorAll('.template-card');
+
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            filterBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            const filter = btn.dataset.filter;
+            
+            templateCards.forEach(card => {
+                if (filter === 'all' || card.dataset.category === filter) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    });
+
+    // Smooth scrolling
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const href = this.getAttribute('href');
+            if (href && href !== '#') {
+                const target = document.querySelector(href);
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            }
+        });
+    });
+
+    // Tab functionality
+    const tabs = document.querySelectorAll('.tab-btn');
+    const tabContents = document.querySelectorAll('.tab-content');
+
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            tabs.forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+
+            tabContents.forEach(content => {
+                content.classList.remove('active');
+            });
+
+            const targetContent = document.getElementById(tab.dataset.tab);
+            if (targetContent) {
+                targetContent.classList.add('active');
+            }
+        });
+    });
+
+    // Template opening function
+    function openTemplate(templateName) {
+        window.open(`templates/${templateName}.html`, '_blank');
+    }
+</script>
+    </div>
 </body>
 </html>
